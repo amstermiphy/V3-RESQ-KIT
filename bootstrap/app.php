@@ -14,6 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     $middleware->alias([
       'guru' => \App\Http\Middleware\EnsureUserIsGuru::class,
     ]);
+
+    $middleware->trustProxies(at: '*');
   })
   ->withExceptions(function (Exceptions $exceptions): void {
     //
