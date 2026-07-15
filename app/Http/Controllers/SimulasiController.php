@@ -68,7 +68,7 @@ class SimulasiController extends Controller
   public function mulai(Request $request)
   {
     if (!session()->has('siswa_id')) {
-      return redirect('/identitas');
+      return response()->json(['success' => false, 'redirect' => '/identitas'], 401);
     }
 
     $request->validate([
@@ -88,13 +88,16 @@ class SimulasiController extends Controller
       'siswa_id'  => session('siswa_id'),
       'materi_id' => $materi->id,
       'mode'      => $request->mode,
-      'status'    => 'proses', // bukan 'belum' lagi, karena user udah beneran mulai
+      'status'    => 'proses',
       'skor'      => 0,
     ]);
 
     session(['hasil_simulasi_id' => $hasil->id]);
 
-    return redirect('/siswa/' . $request->misi);
+    return response()->json([
+      'success'  => true,
+      'redirect' => '/siswa/' . $request->misi,
+    ]);
   }
 
   /**

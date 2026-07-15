@@ -44,6 +44,26 @@
       },
       bisaMulai() {
           return this.mode !== null && this.status === 'siap';
+      },
+      async mulaiMisi() {
+          try {
+              const res = await fetch('{{ route('siswa.mulai') }}', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                      'X-CSRF-TOKEN': document.querySelector('meta[name=\'csrf-token\']').content,
+                  },
+                  body: JSON.stringify({ misi: this.misi, mode: this.mode }),
+              });
+  
+              const json = await res.json();
+  
+              if (json.redirect) {
+                  window.location.href = json.redirect;
+              }
+          } catch (e) {
+              alert('Gagal memulai misi, coba lagi ya.');
+          }
       }
   }" class="relative min-h-screen overflow-hidden bg-gradient-to-br from-sky-100 via-white to-cyan-100">
 
@@ -254,13 +274,8 @@
           </div>
 
           {{-- Tombol Mulai --}}
-          <form action="{{ route('siswa.mulai') }}" method="POST" class="mt-8">
-            @csrf
-
-            <input type="hidden" name="misi" :value="misi">
-            <input type="hidden" name="mode" :value="mode">
-
-            <button type="submit" :disabled="!bisaMulai()"
+          <div class="mt-8">
+            <button type="button" @click="mulaiMisi()" :disabled="!bisaMulai()"
               :class="bisaMulai() ?
                   data[misi].teks + ' cursor-pointer' :
                   'bg-slate-300 cursor-not-allowed'"
@@ -273,9 +288,8 @@
               <span x-show="bisaMulai()">
                 🚀 Mulai Misi
               </span>
-
             </button>
-          </form>
+          </div>
 
         </div>
 
