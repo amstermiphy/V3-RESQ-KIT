@@ -10,7 +10,6 @@ cmds = [
 
 [phases.build]
 cmds = [
-    "php artisan key:generate --force",
     "touch database/database.sqlite",
     "php artisan migrate --force"
 ]
