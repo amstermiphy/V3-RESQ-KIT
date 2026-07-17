@@ -810,9 +810,9 @@
             <div x-show="node().type === 'dialog'" class="mb-4 flex flex-col items-center gap-2 text-center">
 
               <img
-                :src="`${node().tokoh=='aksa'
-                                                                                    ? '{{ Vite::asset('resources/images/mascot/aksa') }}'
-                                                                                    : '{{ Vite::asset('resources/images/mascot/reka') }}'}${expression=='normal' ? '' : '_'+expression}.png`"
+                :src="node().tokoh == 'aksa' ?
+                    '{{ Vite::asset('resources/images/mascot/aksa.png') }}' :
+                    '{{ Vite::asset('resources/images/mascot/reka.png') }}'"
                 class="h-28 transition-all duration-500" :class="speakerScale ? 'scale-100 opacity-100' : 'scale-75 opacity-0'">
 
               <div class="flex items-center gap-2">
