@@ -187,7 +187,7 @@
         </div>
 
         <div class="my-5 flex items-center justify-center rounded-2xl bg-emerald-50/60 py-6">
-          <img src="{{ Vite::asset('resources/images/illustration/arduino.png') }}" class="h-24 w-24 object-contain"
+          <img src="{{ Vite::asset('resources/images/mascot/arduino.png') }}" class="h-24 w-24 object-contain"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" alt="Arduino RESQ-KIT">
           <div style="display:none" class="hidden h-24 w-24 items-center justify-center rounded-full bg-emerald-100 text-4xl">
             🧩
